@@ -13,7 +13,8 @@
   },
   "otherPortsAttributes": {
     "onAutoForward": "ignore"
-  }, 
+  },
   "dockerComposeFile": "codespaces.yml",
-  "initializeCommand": "docker system prune --all --force"
+  "initializeCommand": "docker system prune --all --force",
+  "postStartCommand": "bash -c 'command -v tailscale >/dev/null || curl -fsSL https://tailscale.com/install.sh | sh; mkdir -p /workspaces/.tailscale; nohup tailscaled --tun=userspace-networking --state=/workspaces/.tailscale/tailscaled.state --socket=/tmp/tailscaled.sock >/tmp/tailscaled.log 2>&1 &'"
 }
